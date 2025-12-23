@@ -12,13 +12,15 @@ const stages = [
     text: "Do you wanna see what I made? 👀",
     buttons: [
       { label: "Yes 🤭", action: () => nextStage() },
-      { label: "No 👹", action: () => alert("Hehe no escape darling 👁️👅👁️") }
+      { label: "No 👹", action: () => alert("Hehe no escape my darling 👁️👅👁️") }
     ]
   },
   {
     text: "Have a look at it, Mamita g 💕",
     buttons: [
-      { label: "Lights On 💡", action: () => {
+      {
+        label: "Lights On 💡",
+        action: () => {
           document.body.classList.remove("dim");
           document.body.classList.add("lit");
           nextStage();
@@ -29,7 +31,9 @@ const stages = [
   {
     text: "Play some music first 🎵",
     buttons: [
-      { label: "Play Music 🎶", action: () => {
+      {
+        label: "Play Music 🎶",
+        action: () => {
           music.play();
           nextStage();
         }
@@ -38,12 +42,22 @@ const stages = [
   },
   {
     text: "Let’s decorate this place 🎀",
-    buttons: [{ label: "Decorate ✨", action: () => nextStage() }]
+    buttons: [
+      {
+        label: "Decorate ✨",
+        action: () => {
+          document.getElementById("decorations").classList.remove("hidden");
+          nextStage();
+        }
+      }
+    ]
   },
   {
     text: "Fly the balloons 🎈",
     buttons: [
-      { label: "Fly 🎈", action: () => {
+      {
+        label: "Fly 🎈",
+        action: () => {
           flyBalloons();
           nextStage();
         }
@@ -54,7 +68,9 @@ const stages = [
     html: `<img src="cake.png" class="cake">
            <p>Let’s cut the cake, Mamita g 🎂</p>`,
     buttons: [
-      { label: "Cut the cake 🎂", action: () => {
+      {
+        label: "Cut the cake 🎂",
+        action: () => {
           confettiBlast();
           nextStage();
         }
@@ -64,23 +80,28 @@ const stages = [
   {
     html: `<div class="letter">
       <p>Well… I have a little message for you 💌</p>
-      <p>Mamita g, you are not just special today, you are special to me every single day.</p>
-      <p>Your smile, your voice, your presence — they make my world softer and brighter.</p>
+      <p>Mamita g, you are not just special today — you are special to me every single day.</p>
+      <p>Your smile, your voice, your presence make my world softer and brighter.</p>
       <p>Happy Birthday my cute Mamita g 🎉💖</p>
     </div>`
   }
 ];
 
+function highlightWords(text) {
+  return text.replace(/Mamita g/g, "<span class='highlight'>Mamita g</span>");
+}
+
 function typeText(text, callback) {
   textEl.innerHTML = "";
   let i = 0;
   const timer = setInterval(() => {
-    textEl.innerHTML += text.charAt(i++);
+    textEl.innerHTML = highlightWords(text.slice(0, i + 1));
+    i++;
     if (i >= text.length) {
       clearInterval(timer);
       if (callback) callback();
     }
-  }, 35);
+  }, 30);
 }
 
 function renderStage() {
@@ -128,7 +149,7 @@ function flyBalloons() {
     const b = document.createElement("div");
     b.className = "balloon";
     b.style.left = Math.random() * 100 + "vw";
-    b.style.background = ["#ff4f8b","#60a5fa","#34d399"][i % 3];
+    b.style.background = ["#ff4f8b", "#60a5fa", "#34d399"][i % 3];
     b.style.animationDuration = 5 + Math.random() * 5 + "s";
     document.body.appendChild(b);
   }
