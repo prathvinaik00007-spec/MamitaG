@@ -6,7 +6,7 @@ const card = document.getElementById("card");
 let stage = 0;
 
 const stages = [
-  { text: "Hehe 😚 it’s your special day Mamita g 💖" },
+  { text: "Hehe (⁠〃ﾟ⁠3ﾟ⁠〃⁠)it’s your special day Mamita g 💖" },
   { text: "So I wanted to make something special for you ✨" },
   {
     text: "Do you wanna see what I made? ",
