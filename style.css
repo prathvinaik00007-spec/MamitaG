@@ -19,12 +19,10 @@ body.lit { background: #ffe6f0; }
   text-align: center;
   position: relative;
   z-index: 10;
-  box-shadow:
-    0 12px 30px rgba(255,105,180,0.35),
-    0 0 20px rgba(255,79,139,0.25);
+  box-shadow: 0 12px 30px rgba(255,105,180,0.35);
 }
 
-/* Main text */
+/* Text */
 #text {
   font-size: 20px;
   font-weight: 600;
@@ -32,7 +30,6 @@ body.lit { background: #ffe6f0; }
   animation: popIn 0.6s ease;
 }
 
-/* Gradient only for non-letter text */
 #text:not(:has(.letter)) {
   background: linear-gradient(90deg, #ff4f8b, #8b5cf6);
   -webkit-background-clip: text;
@@ -53,7 +50,6 @@ button {
   border-radius: 20px;
   margin: 8px;
   cursor: pointer;
-  font-size: 15px;
 }
 
 /* Hearts */
@@ -61,7 +57,7 @@ button {
   position: absolute;
   font-size: 26px;
   color: #ff4f8b;
-  opacity: 0.85;
+  opacity: 0.8;
   animation: floatUp 6s linear infinite;
 }
 
@@ -81,14 +77,12 @@ button {
   z-index: 5;
 }
 
-/* Banner */
 .banner {
   background: #ff4f8b;
   color: white;
   padding: 10px 24px;
   border-radius: 22px;
   font-size: 18px;
-  display: inline-block;
   animation: dropIn 1s ease;
 }
 
@@ -119,28 +113,13 @@ button {
   50% { transform: rotate(6deg); }
 }
 
-/* ✨ Sparkles */
-.sparkles span {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #ffd1e8;
-  border-radius: 50%;
-  animation: sparkle 4s linear infinite;
-}
-
-@keyframes sparkle {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-120px); opacity: 0; }
-}
-
-/* Balloons */
+/* 🎈 Balloons (FIXED) */
 .balloon {
   position: absolute;
   width: 42px;
   height: 58px;
   border-radius: 50%;
-  animation: fly 7s linear infinite;
+  animation: rise linear forwards;
 }
 
 .balloon::after {
@@ -152,9 +131,13 @@ button {
   left: 9px;
 }
 
-@keyframes fly {
-  from { transform: translateY(110vh); }
-  to { transform: translateY(-120vh); }
+@keyframes rise {
+  from {
+    transform: translateY(110vh) translateX(0);
+  }
+  to {
+    transform: translateY(-120vh) translateX(var(--drift));
+  }
 }
 
 /* Cake */
@@ -170,6 +153,5 @@ button {
   padding: 25px;
   border-radius: 14px;
   line-height: 1.7;
-  text-align: left;
   color: #2b2b2b;
-   }
+  }
