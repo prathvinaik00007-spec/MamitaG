@@ -147,3 +147,15 @@ button {
     opacity: 0;
   }
   }
+/* FIX: Make letter text visible */
+.letter p {
+  color: #2b2b2b;           /* dark readable text */
+  -webkit-text-fill-color: initial;
+  background: none;
+  margin-bottom: 14px;
+}
+
+/* Slight emphasis for opening & closing */
+.letter p strong {
+  color: #ff4f8b;
+}
