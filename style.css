@@ -1,4 +1,6 @@
-/* BODY */
+/* =======================
+   GLOBAL
+======================= */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -14,7 +16,9 @@ body.lit {
   background: #ffe6f0;
 }
 
-/* CARD */
+/* =======================
+   CARD
+======================= */
 .card {
   width: 85%;
   max-width: 420px;
@@ -30,23 +34,33 @@ body.lit {
     0 0 20px rgba(255,79,139,0.25);
 }
 
-/* MAIN TEXT */
+/* =======================
+   MAIN TYPING TEXT
+   (gradient text ONLY here)
+======================= */
 #text {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.6;
-  background: linear-gradient(90deg, #ff4f8b, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: popIn 0.6s ease;
 }
 
+/* Apply gradient ONLY when NOT letter */
+#text:not(:has(.letter)) {
+  background: linear-gradient(90deg, #ff4f8b, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animation */
 @keyframes popIn {
   from { transform: scale(0.95); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
-/* BUTTONS */
+/* =======================
+   BUTTONS
+======================= */
 button {
   font-family: 'Poppins', sans-serif;
   background: #ff4f8b;
@@ -59,7 +73,9 @@ button {
   font-size: 15px;
 }
 
-/* FLOATING HEARTS */
+/* =======================
+   FLOATING HEARTS
+======================= */
 #hearts span {
   position: absolute;
   font-size: 28px;
@@ -73,8 +89,12 @@ button {
   to { transform: translateY(-10vh) scale(1.3); opacity: 0; }
 }
 
-/* DECORATIONS */
-.hidden { display: none; }
+/* =======================
+   DECORATIONS
+======================= */
+.hidden {
+  display: none;
+}
 
 #decorations {
   position: fixed;
@@ -99,7 +119,9 @@ button {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* BALLOONS */
+/* =======================
+   BALLOONS
+======================= */
 .balloon {
   position: absolute;
   width: 42px;
@@ -122,40 +144,44 @@ button {
   to { transform: translateY(-120vh); }
 }
 
-/* CAKE */
+/* =======================
+   CAKE
+======================= */
 .cake {
   width: 200px;
   margin: 15px auto;
 }
 
-/* LETTER */
+/* =======================
+   LETTER (FINAL FIX)
+======================= */
 .letter {
   font-family: 'Playfair Display', serif;
   background: #fffdf8;
   padding: 25px;
   border-radius: 14px;
   line-height: 1.7;
+  text-align: left;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   background-image: linear-gradient(#fce7f3 1px, transparent 1px);
   background-size: 100% 28px;
 }
 
-/* CONFETTI */
+/* Force readable text inside letter */
+.letter p,
+.letter strong {
+  color: #2b2b2b;
+  -webkit-text-fill-color: #2b2b2b;
+  background: none;
+  margin-bottom: 14px;
+}
+
+/* =======================
+   CONFETTI
+======================= */
 @keyframes confettiFall {
   to {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
   }
-  }
-/* FIX: Make letter text visible */
-.letter p {
-  color: #2b2b2b;           /* dark readable text */
-  -webkit-text-fill-color: initial;
-  background: none;
-  margin-bottom: 14px;
-}
-
-/* Slight emphasis for opening & closing */
-.letter p strong {
-  color: #ff4f8b;
 }
