@@ -1,8 +1,10 @@
+/* 🔒 KILL ANDROID TEXT AUTOSIZE COMPLETELY */
 html, body {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
 
+/* ===== GLOBAL ===== */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -10,7 +12,7 @@ body {
   overflow: hidden;
 }
 
-/* CARD */
+/* ===== CARD ===== */
 .card {
   width: 85%;
   max-width: 420px;
@@ -22,50 +24,14 @@ body {
   box-shadow: 0 12px 30px rgba(255,105,180,0.35);
 }
 
-/* TEXT */
+/* ===== TEXT (NO ANIMATION EVER) ===== */
 #text {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.6;
 }
 
-/* BUTTONS */
-button {
-  background: #ff4f8b;
-  color: white;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 20px;
-  margin: 8px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-/* HEARTS */
-#hearts span {
-  position: fixed;
-  bottom: -20px;
-  font-size: 22px;
-  color: rgba(255,79,139,0.6);
-  animation: floatUp 6s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes floatUp {
-  to {
-    transform: translateY(-120vh);
-    opacity: 0;
-  }
-}
-
-/* CAKE */
-.cake {
-  width: 200px;
-  display: block;
-  margin: 15px auto;
-}
-
-/* LETTER */
+/* ===== LETTER (FIXED SIZE, NO REFLOW) ===== */
 .letter {
   font-family: 'Playfair Display', serif;
   font-size: 16px;
@@ -75,4 +41,42 @@ button {
   border-radius: 14px;
   text-align: left;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+  /* 🔒 absolute stability */
+  transform: none !important;
+  animation: none !important;
+  will-change: auto;
+}
+
+.letter * {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* ===== BUTTONS ===== */
+button {
+  background: #ff4f8b;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  margin: 8px;
+  font-size: 15px;
+}
+
+/* ===== FLOATING HEARTS (DO NOT AFFECT LAYOUT) ===== */
+#hearts span {
+  position: fixed;
+  bottom: -20px;
+  font-size: 22px;
+  color: rgba(255, 79, 139, 0.6);
+  animation: floatUp 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
 }
