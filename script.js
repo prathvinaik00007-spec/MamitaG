@@ -9,7 +9,7 @@ const stages = [
   { text: "Hehe (⁠〃ﾟ⁠3ﾟ⁠〃⁠) it’s your special day Mamita g 💖" },
   { text: "So I wanted to make something special for you ✨" },
   {
-    text: "Do you wanna see what I made? ",
+    text: "Do you wanna see what I made? 👀",
     buttons: [
       { label: "Yes 🤭", action: () => nextStage() },
       { label: "No 👹", action: () => alert("Hehe u can't escape my darling 👁️👅👁️") }
