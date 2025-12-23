@@ -1,6 +1,3 @@
-/* =======================
-   GLOBAL
-======================= */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -8,17 +5,10 @@ body {
   transition: background 1.2s ease;
 }
 
-body.dim {
-  background: #f3c1d9;
-}
+body.dim { background: #f3c1d9; }
+body.lit { background: #ffe6f0; }
 
-body.lit {
-  background: #ffe6f0;
-}
-
-/* =======================
-   CARD
-======================= */
+/* Card */
 .card {
   width: 85%;
   max-width: 420px;
@@ -34,10 +24,7 @@ body.lit {
     0 0 20px rgba(255,79,139,0.25);
 }
 
-/* =======================
-   MAIN TYPING TEXT
-   (gradient text ONLY here)
-======================= */
+/* Main text */
 #text {
   font-size: 20px;
   font-weight: 600;
@@ -45,24 +32,20 @@ body.lit {
   animation: popIn 0.6s ease;
 }
 
-/* Apply gradient ONLY when NOT letter */
+/* Gradient only for non-letter text */
 #text:not(:has(.letter)) {
   background: linear-gradient(90deg, #ff4f8b, #8b5cf6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Animation */
 @keyframes popIn {
   from { transform: scale(0.95); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
-/* =======================
-   BUTTONS
-======================= */
+/* Buttons */
 button {
-  font-family: 'Poppins', sans-serif;
   background: #ff4f8b;
   color: white;
   border: none;
@@ -73,45 +56,40 @@ button {
   font-size: 15px;
 }
 
-/* =======================
-   FLOATING HEARTS
-======================= */
+/* Hearts */
 #hearts span {
   position: absolute;
-  font-size: 28px;
+  font-size: 26px;
   color: #ff4f8b;
   opacity: 0.85;
   animation: floatUp 6s linear infinite;
 }
 
 @keyframes floatUp {
-  from { transform: translateY(100vh) scale(1); }
-  to { transform: translateY(-10vh) scale(1.3); opacity: 0; }
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); opacity: 0; }
 }
 
-/* =======================
-   DECORATIONS
-======================= */
-.hidden {
-  display: none;
-}
+/* Decorations */
+.hidden { display: none; }
 
 #decorations {
   position: fixed;
-  top: 25px;
+  top: 20px;
   width: 100%;
   text-align: center;
   z-index: 5;
 }
 
+/* Banner */
 .banner {
   background: #ff4f8b;
   color: white;
   padding: 10px 24px;
   border-radius: 22px;
   font-size: 18px;
-  animation: dropIn 1s ease;
   display: inline-block;
+  animation: dropIn 1s ease;
 }
 
 @keyframes dropIn {
@@ -119,9 +97,44 @@ button {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* =======================
-   BALLOONS
-======================= */
+/* 🎀 Ribbons */
+.ribbons {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.ribbons span {
+  width: 6px;
+  height: 120px;
+  background: linear-gradient(#ff4f8b, #ffc1d9);
+  border-radius: 10px;
+  animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(6deg); }
+}
+
+/* ✨ Sparkles */
+.sparkles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffd1e8;
+  border-radius: 50%;
+  animation: sparkle 4s linear infinite;
+}
+
+@keyframes sparkle {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-120px); opacity: 0; }
+}
+
+/* Balloons */
 .balloon {
   position: absolute;
   width: 42px;
@@ -144,17 +157,13 @@ button {
   to { transform: translateY(-120vh); }
 }
 
-/* =======================
-   CAKE
-======================= */
+/* Cake */
 .cake {
   width: 200px;
   margin: 15px auto;
 }
 
-/* =======================
-   LETTER (FINAL FIX)
-======================= */
+/* Letter */
 .letter {
   font-family: 'Playfair Display', serif;
   background: #fffdf8;
@@ -162,26 +171,5 @@ button {
   border-radius: 14px;
   line-height: 1.7;
   text-align: left;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  background-image: linear-gradient(#fce7f3 1px, transparent 1px);
-  background-size: 100% 28px;
-}
-
-/* Force readable text inside letter */
-.letter p,
-.letter strong {
   color: #2b2b2b;
-  -webkit-text-fill-color: #2b2b2b;
-  background: none;
-  margin-bottom: 14px;
-}
-
-/* =======================
-   CONFETTI
-======================= */
-@keyframes confettiFall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
-}
+   }
