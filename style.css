@@ -1,6 +1,11 @@
 /* =======================
-   GLOBAL
+   GLOBAL (MOBILE FIX)
 ======================= */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -35,7 +40,7 @@ body.lit {
 }
 
 /* =======================
-   MAIN TEXT (NO ANIMATION)
+   MAIN TEXT (STABLE)
 ======================= */
 #text {
   font-size: 20px;
@@ -82,30 +87,6 @@ button {
 }
 
 /* =======================
-   DECORATIONS
-======================= */
-.hidden {
-  display: none;
-}
-
-#decorations {
-  position: fixed;
-  top: 25px;
-  width: 100%;
-  text-align: center;
-  z-index: 5;
-}
-
-.banner {
-  background: #ff4f8b;
-  color: white;
-  padding: 10px 24px;
-  border-radius: 22px;
-  font-size: 18px;
-  display: inline-block;
-}
-
-/* =======================
    BALLOONS
 ======================= */
 .balloon {
@@ -114,15 +95,6 @@ button {
   height: 58px;
   border-radius: 50%;
   animation: fly 7s linear forwards;
-}
-
-.balloon::after {
-  content: "❤";
-  color: white;
-  font-size: 22px;
-  position: absolute;
-  top: 8px;
-  left: 9px;
 }
 
 @keyframes fly {
@@ -139,7 +111,7 @@ button {
 }
 
 /* =======================
-   LETTER (STABLE – NO SCALE EVER)
+   LETTER (ABSOLUTELY STABLE)
 ======================= */
 .letter {
   font-family: 'Playfair Display', serif;
@@ -151,8 +123,7 @@ button {
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   background-image: linear-gradient(#fce7f3 1px, transparent 1px);
   background-size: 100% 28px;
-  animation: none !important;
-  transform: none !important;
+  font-size: 16px;
 }
 
 .letter p,
@@ -161,6 +132,4 @@ button {
   -webkit-text-fill-color: #2b2b2b;
   background: none;
   margin-bottom: 14px;
-  animation: none !important;
-  transform: none !important;
-   }
+}
