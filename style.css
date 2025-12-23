@@ -1,10 +1,8 @@
-/* 🔒 KILL ANDROID TEXT AUTOSIZE COMPLETELY */
 html, body {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
 
-/* ===== GLOBAL ===== */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -12,7 +10,7 @@ body {
   overflow: hidden;
 }
 
-/* ===== CARD ===== */
+/* CARD */
 .card {
   width: 85%;
   max-width: 420px;
@@ -24,36 +22,14 @@ body {
   box-shadow: 0 12px 30px rgba(255,105,180,0.35);
 }
 
-/* ===== TEXT (NO ANIMATION EVER) ===== */
+/* TEXT */
 #text {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.6;
 }
 
-/* ===== LETTER (FIXED SIZE, NO REFLOW) ===== */
-.letter {
-  font-family: 'Playfair Display', serif;
-  font-size: 16px;
-  line-height: 1.7;
-  background: #fffdf8;
-  padding: 22px;
-  border-radius: 14px;
-  text-align: left;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-
-  /* 🔒 absolute stability */
-  transform: none !important;
-  animation: none !important;
-  will-change: auto;
-}
-
-.letter * {
-  animation: none !important;
-  transform: none !important;
-}
-
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 button {
   background: #ff4f8b;
   color: white;
@@ -62,14 +38,15 @@ button {
   border-radius: 20px;
   margin: 8px;
   font-size: 15px;
+  cursor: pointer;
 }
 
-/* ===== FLOATING HEARTS (DO NOT AFFECT LAYOUT) ===== */
+/* HEARTS */
 #hearts span {
   position: fixed;
   bottom: -20px;
   font-size: 22px;
-  color: rgba(255, 79, 139, 0.6);
+  color: rgba(255,79,139,0.6);
   animation: floatUp 6s linear infinite;
   pointer-events: none;
 }
@@ -79,4 +56,23 @@ button {
     transform: translateY(-120vh);
     opacity: 0;
   }
+}
+
+/* CAKE */
+.cake {
+  width: 200px;
+  display: block;
+  margin: 15px auto;
+}
+
+/* LETTER */
+.letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  background: #fffdf8;
+  padding: 22px;
+  border-radius: 14px;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
