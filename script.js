@@ -16,8 +16,8 @@ const stages = [
   {
     text: "Do you wanna see what I made? 👀",
     buttons: [
-      { label: "Yes 😍", action: () => next() },
-      { label: "No 🙈", action: () => alert("Hehe no option allowed 😼") }
+      { label: "Yes 👁️👅👁️", action: () => next() },
+      { label: "No 😿", action: () => alert("Hehe no option allowed 😼") }
     ]
   },
   {
