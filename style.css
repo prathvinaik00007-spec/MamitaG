@@ -190,3 +190,13 @@ button {
   animation: none !important;
   transform: none !important;
      }
+/* ===== FINAL FIX: stop letter zoom loop (mobile safe) ===== */
+.letter {
+  animation: none !important;
+  transform: none !important;
+}
+
+.letter * {
+  animation: none !important;
+  transform: none !important;
+   }
