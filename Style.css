@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  background: #ffe6f0;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  width: 80%;
+  max-width: 420px;
+  margin: 100px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(255,105,180,0.4);
+  text-align: center;
+  z-index: 10;
+}
+
+button {
+  background: #ff4f8b;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  margin: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button.alt {
+  background: #8b5cf6;
+}
+
+#hearts span {
+  position: absolute;
+  color: pink;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 55px;
+  border-radius: 50%;
+  animation: fly 7s linear infinite;
+}
+
+@keyframes fly {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-120vh); }
+}
+
+.cake {
+  width: 200px;
+  margin: 15px auto;
+}
+
+.letter {
+  background: #fff0f6;
+  font-family: 'Georgia';
+  padding: 20px;
+  border-radius: 15px;
+}
