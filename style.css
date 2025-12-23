@@ -1,29 +1,18 @@
-/* =======================
-   GLOBAL (MOBILE FIX)
-======================= */
-html {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+/* 🔒 KILL ANDROID TEXT AUTOSIZE COMPLETELY */
+html, body {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
+/* ===== GLOBAL ===== */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-  transition: background 1.2s ease;
-}
-
-body.dim {
   background: #f3c1d9;
+  overflow: hidden;
 }
 
-body.lit {
-  background: #ffe6f0;
-}
-
-/* =======================
-   CARD
-======================= */
+/* ===== CARD ===== */
 .card {
   width: 85%;
   max-width: 420px;
@@ -32,104 +21,62 @@ body.lit {
   padding: 25px;
   border-radius: 18px;
   text-align: center;
-  position: relative;
-  z-index: 10;
-  box-shadow:
-    0 12px 30px rgba(255,105,180,0.35),
-    0 0 20px rgba(255,79,139,0.25);
+  box-shadow: 0 12px 30px rgba(255,105,180,0.35);
 }
 
-/* =======================
-   MAIN TEXT (STABLE)
-======================= */
+/* ===== TEXT (NO ANIMATION EVER) ===== */
 #text {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.6;
 }
 
-/* Gradient ONLY for non-letter text */
-#text:not(:has(.letter)) {
-  background: linear-gradient(90deg, #ff4f8b, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* ===== LETTER (FIXED SIZE, NO REFLOW) ===== */
+.letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  background: #fffdf8;
+  padding: 22px;
+  border-radius: 14px;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+  /* 🔒 absolute stability */
+  transform: none !important;
+  animation: none !important;
+  will-change: auto;
 }
 
-/* =======================
-   BUTTONS
-======================= */
+.letter * {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* ===== BUTTONS ===== */
 button {
-  font-family: 'Poppins', sans-serif;
   background: #ff4f8b;
   color: white;
   border: none;
   padding: 10px 22px;
   border-radius: 20px;
   margin: 8px;
-  cursor: pointer;
   font-size: 15px;
 }
 
-/* =======================
-   FLOATING HEARTS
-======================= */
+/* ===== FLOATING HEARTS (DO NOT AFFECT LAYOUT) ===== */
 #hearts span {
-  position: absolute;
-  font-size: 28px;
-  color: #ff4f8b;
-  opacity: 0.85;
+  position: fixed;
+  bottom: -20px;
+  font-size: 22px;
+  color: rgba(255, 79, 139, 0.6);
   animation: floatUp 6s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-10vh); opacity: 0; }
-}
-
-/* =======================
-   BALLOONS
-======================= */
-.balloon {
-  position: absolute;
-  width: 42px;
-  height: 58px;
-  border-radius: 50%;
-  animation: fly 7s linear forwards;
-}
-
-@keyframes fly {
-  from { transform: translateY(110vh); }
-  to { transform: translateY(-120vh); }
-}
-
-/* =======================
-   CAKE
-======================= */
-.cake {
-  width: 200px;
-  margin: 15px auto;
-}
-
-/* =======================
-   LETTER (ABSOLUTELY STABLE)
-======================= */
-.letter {
-  font-family: 'Playfair Display', serif;
-  background: #fffdf8;
-  padding: 25px;
-  border-radius: 14px;
-  line-height: 1.7;
-  text-align: left;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  background-image: linear-gradient(#fce7f3 1px, transparent 1px);
-  background-size: 100% 28px;
-  font-size: 16px;
-}
-
-.letter p,
-.letter strong {
-  color: #2b2b2b;
-  -webkit-text-fill-color: #2b2b2b;
-  background: none;
-  margin-bottom: 14px;
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
 }
