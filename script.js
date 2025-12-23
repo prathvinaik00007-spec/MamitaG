@@ -6,13 +6,19 @@ const balloonsBox = document.getElementById("balloons");
 let stage = 0;
 
 const stages = [
-  { text: "Hehe (⁠〃ﾟ⁠3ﾟ⁠〃⁠) it’s your special day Mamita g 💖" },
-  { text: "So I wanted to make something special for you ✨" },
   {
-    text: "Do you wanna see what I made? ",
+    text: "Hehe 😚 it’s your special day Mamita g 💖",
+    autoNext: true
+  },
+  {
+    text: "So I wanted to make something special for you ✨",
+    autoNext: true
+  },
+  {
+    text: "Do you wanna see what I made? 👀",
     buttons: [
-      { label: "Yes 🤭", action: () => nextStage() },
-      { label: "No 👹", action: () => alert("Hehe no escape my darling 👁️👅👁️") }
+      { label: "Yes 😍", action: () => nextStage() },
+      { label: "No 🙈", action: () => alert("Hehe no escape 😼") }
     ]
   },
   {
@@ -36,7 +42,7 @@ const stages = [
     }]
   },
   {
-    text: "Let’s decorate this place ",
+    text: "Let’s decorate this place 🎀",
     buttons: [{
       label: "Decorate ✨",
       action: () => {
@@ -58,7 +64,10 @@ const stages = [
   {
     html: `<img src="cake.png" class="cake">
            <p>Let’s cut the cake 🎂</p>`,
-    buttons: [{ label: "Cut 🎂", action: () => nextStage() }]
+    buttons: [{
+      label: "Cut 🎂",
+      action: () => nextStage()
+    }]
   },
   {
     html: `<div class="letter">
@@ -74,22 +83,28 @@ const stages = [
 function renderStage() {
   buttons.innerHTML = "";
   const s = stages[stage];
+
   if (s.text) {
     textEl.innerHTML = s.text;
-    renderButtons(s.buttons);
   } else {
     textEl.innerHTML = s.html;
-    renderButtons(s.buttons);
   }
-}
 
-function renderButtons(btns = []) {
-  btns.forEach(b => {
-    const btn = document.createElement("button");
-    btn.innerText = b.label;
-    btn.onclick = b.action;
-    buttons.appendChild(btn);
-  });
+  if (s.buttons) {
+    s.buttons.forEach(b => {
+      const btn = document.createElement("button");
+      btn.innerText = b.label;
+      btn.onclick = b.action;
+      buttons.appendChild(btn);
+    });
+  }
+
+  // auto-advance intro stages
+  if (s.autoNext) {
+    setTimeout(() => {
+      nextStage();
+    }, 1600);
+  }
 }
 
 function nextStage() {
@@ -97,11 +112,11 @@ function nextStage() {
   renderStage();
 }
 
-/* Cute decorate effect */
+/* Cute decoration effect */
 function decorateNow() {
   document.getElementById("decorations").classList.remove("hidden");
 
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 18; i++) {
     const h = document.createElement("span");
     h.innerHTML = "💗";
     h.style.position = "fixed";
@@ -109,8 +124,8 @@ function decorateNow() {
     h.style.top = "50%";
     h.style.fontSize = "22px";
 
-    const x = Math.random() * 300 - 150;
-    const y = Math.random() * 300 - 150;
+    const x = Math.random() * 260 - 130;
+    const y = Math.random() * 260 - 130;
 
     h.animate(
       [
