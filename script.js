@@ -1,106 +1,160 @@
-const text = document.getElementById("text");
+const textEl = document.getElementById("text");
 const buttons = document.getElementById("buttons");
-const music = document.getElementById("bgMusic");
+const music = document.getElementById("music");
+const card = document.getElementById("card");
 
 let stage = 0;
 
-/* Floating hearts */
-setInterval(() => {
-  const heart = document.createElement("span");
-  heart.innerHTML = "❤";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-  document.getElementById("hearts").appendChild(heart);
+const stages = [
+  { text: "Hehe (⁠〃ﾟ⁠3ﾟ⁠〃⁠) it’s your special day Mamita g 💖" },
+  { text: "So I wanted to make something special for you ✨" },
+  {
+    text: "Do you wanna see what I made? ",
+    buttons: [
+      { label: "Yes 🤭", action: () => nextStage() },
+      { label: "No 👹", action: () => alert("Hehe u can't escape my darling 👁️👅👁️") }
+    ]
+  },
+  {
+    text: "Have a look at it, Mamita g 💕",
+    buttons: [{
+      label: "Lights On 💡",
+      action: () => {
+        document.body.classList.replace("dim", "lit");
+        nextStage();
+      }
+    }]
+  },
+  {
+    text: "Play some music first 🎵",
+    buttons: [{
+      label: "Play Music 🎶",
+      action: () => {
+        music.play();
+        nextStage();
+      }
+    }]
+  },
+  {
+    text: "Let’s decorate this place ",
+    buttons: [{
+      label: "Decorate ✨",
+      action: () => {
+        document.getElementById("decorations").classList.remove("hidden");
+        nextStage();
+      }
+    }]
+  },
+  {
+    text: "Fly the balloons 🎈",
+    buttons: [{
+      label: "Fly 🎈",
+      action: () => {
+        flyBalloons();
+        nextStage();
+      }
+    }]
+  },
+  {
+    html: `<img src="cake.png" class="cake">
+           <p>Let’s cut the cake, Mamita g 🎂</p>`,
+    buttons: [{
+      label: "Cut the cake 🎂",
+      action: () => {
+        confettiBlast();
+        nextStage();
+      }
+    }]
+  },
+  {
+    html: `<div class="letter">
+      <p><strong>Nandini,</strong></p>
+      <p>Loving you was never something I tried to understand or plan — it was just meant to happen. It came naturally, like something that slowly found its place in my life. With you, love feels simple, calm, safe, and honest. I don’t need to pretend or explain myself around you, and that comfort means more to me than anything loud or dramatic. You don’t have to try to be special for me — the way you care, the way you stay, the way you exist is already enough.</p>
+      <p>On your birthday, I don’t wish you perfection or fairy-tale promises. I just wish you peace, warmth, and moments that remind you how deeply you are loved — not just today. One day, I want to propose to you and choose you for a lifetime, living together while facing both happiness and sadness, side by side, every day. I can’t imagine a world without you. You’ve become such a part of me that even if there were a cure for this love, I would never accept it.</p>
+      <p><strong>Happiest Birthday, my princess 💖</strong></p>
+    </div>`
+  }
+];
 
-  setTimeout(() => heart.remove(), 6000);
-}, 400);
-
-function clearUI() {
-  buttons.innerHTML = "";
+function typeText(text, callback) {
+  textEl.innerHTML = "";
+  let i = 0;
+  const timer = setInterval(() => {
+    textEl.innerHTML = text.slice(0, i + 1);
+    i++;
+    if (i >= text.length) {
+      clearInterval(timer);
+      if (callback) callback();
+    }
+  }, 30);
 }
 
-function createButton(label, action) {
-  const btn = document.createElement("button");
-  btn.innerText = label;
-  btn.onclick = action;
-  buttons.appendChild(btn);
+function renderStage() {
+  buttons.innerHTML = "";
+  const s = stages[stage];
+  if (s.text) {
+    typeText(s.text, () => renderButtons(s.buttons));
+  } else {
+    textEl.innerHTML = s.html;
+    renderButtons(s.buttons);
+  }
+}
+
+function renderButtons(btns = []) {
+  btns.forEach(b => {
+    const btn = document.createElement("button");
+    btn.innerText = b.label;
+    btn.onclick = b.action;
+    buttons.appendChild(btn);
+  });
 }
 
 function nextStage() {
   stage++;
-  showStage();
+  renderStage();
 }
 
-function playMusic() {
-  music.volume = 0.6;
-  music.play();
+card.addEventListener("click", () => {
+  if (stage < 2) nextStage();
+});
+
+function createHearts() {
+  setInterval(() => {
+    const h = document.createElement("span");
+    h.innerHTML = "♡";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = 4 + Math.random() * 4 + "s";
+    document.getElementById("hearts").appendChild(h);
+    setTimeout(() => h.remove(), 8000);
+  }, 250);
 }
 
-function showStage() {
-  clearUI();
-
-  if (stage === 0) {
-    text.innerHTML = "Hehe 😚 it’s your special day Mamita g 💖";
-    createButton("Next 👉", nextStage);
-
-  } else if (stage === 1) {
-    text.innerHTML = "I made something special for you…";
-    createButton("Show me 👀", nextStage);
-
-  } else if (stage === 2) {
-    text.innerHTML = "Let’s make the mood perfect 🎶";
-    createButton("Play Music 🎵", () => {
-      playMusic();
-      nextStage();
-    });
-
-  } else if (stage === 3) {
-    text.innerHTML = `<img src="cake.png" class="cake"><p>Cut the cake Mamita g 🎂</p>`;
-    createButton("Cut 🎉", nextStage);
-
-  } else if (stage === 4) {
-    text.innerHTML = `
-      <div class="letter">
-        <p><strong>Nandini,</strong></p>
-
-        <p>
-        Loving you was never something I planned or tried to understand.
-        It just happened naturally, like something that slowly found its
-        place in my life.
-        </p>
-
-        <p>
-        With you, love feels calm, safe, honest. I don’t need to pretend
-        or explain myself around you, and that comfort means more to me
-        than anything loud or dramatic.
-        </p>
-
-        <p>
-        You don’t have to try to be special for me. The way you care,
-        the way you stay, the way you exist — that is already enough.
-        </p>
-
-        <p>
-        On your birthday, I don’t wish you perfection or fairy-tale promises.
-        I just wish you peace, warmth, and moments that remind you how deeply
-        you are loved.
-        </p>
-
-        <p>
-        One day I will ask you to marry me. I want to live with you,
-        facing happiness and sadness together, every single day.
-        </p>
-
-        <p>
-        I can’t imagine a world without you. You became my addiction —
-        and even if there were a cure, I’d never accept it.
-        </p>
-
-        <p><strong>Happiest Birthday, my princess 💖</strong></p>
-      </div>
-    `;
+function flyBalloons() {
+  for (let i = 0; i < 12; i++) {
+    const b = document.createElement("div");
+    b.className = "balloon";
+    b.style.left = Math.random() * 100 + "vw";
+    b.style.background = ["#ff4f8b","#60a5fa","#34d399"][i % 3];
+    b.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(b);
   }
 }
 
-/* START */
-showStage();
+function confettiBlast() {
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement("div");
+    c.style.position = "fixed";
+    c.style.width = "8px";
+    c.style.height = "8px";
+    c.style.background = ["#ff4f8b","#60a5fa","#34d399","#facc15"][i % 4];
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.top = "-10px";
+    c.style.zIndex = 9999;
+    c.style.animation = `confettiFall ${2 + Math.random() * 3}s linear`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+
+createHearts();
+renderStage();
