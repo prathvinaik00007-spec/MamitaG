@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
-  transition: background 1.2s ease;
+  transition: background 1s ease;
 }
 
 body.dim { background: #f3c1d9; }
@@ -27,18 +27,13 @@ body.lit { background: #ffe6f0; }
   font-size: 20px;
   font-weight: 600;
   line-height: 1.6;
-  animation: popIn 0.6s ease;
 }
 
+/* Gradient text except letter */
 #text:not(:has(.letter)) {
   background: linear-gradient(90deg, #ff4f8b, #8b5cf6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-@keyframes popIn {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
 }
 
 /* Buttons */
@@ -55,9 +50,9 @@ button {
 /* Hearts */
 #hearts span {
   position: absolute;
-  font-size: 26px;
+  font-size: 22px;
   color: #ff4f8b;
-  opacity: 0.8;
+  opacity: 0.7;
   animation: floatUp 6s linear infinite;
 }
 
@@ -83,37 +78,9 @@ button {
   padding: 10px 24px;
   border-radius: 22px;
   font-size: 18px;
-  animation: dropIn 1s ease;
 }
 
-@keyframes dropIn {
-  from { transform: translateY(-40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* 🎀 Ribbons */
-.ribbons {
-  display: flex;
-  justify-content: space-around;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.ribbons span {
-  width: 6px;
-  height: 120px;
-  background: linear-gradient(#ff4f8b, #ffc1d9);
-  border-radius: 10px;
-  animation: sway 3s ease-in-out infinite;
-}
-
-@keyframes sway {
-  0%,100% { transform: rotate(0deg); }
-  50% { transform: rotate(6deg); }
-}
-
-/* 🎈 Balloons (FIXED) */
+/* Balloons */
 .balloon {
   position: absolute;
   width: 42px;
@@ -125,19 +92,15 @@ button {
 .balloon::after {
   content: "❤";
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   position: absolute;
   top: 8px;
   left: 9px;
 }
 
 @keyframes rise {
-  from {
-    transform: translateY(110vh) translateX(0);
-  }
-  to {
-    transform: translateY(-120vh) translateX(var(--drift));
-  }
+  from { transform: translateY(110vh) translateX(0); }
+  to { transform: translateY(-120vh) translateX(var(--drift)); }
 }
 
 /* Cake */
@@ -154,10 +117,5 @@ button {
   border-radius: 14px;
   line-height: 1.7;
   color: #2b2b2b;
+  text-align: left;
   }
-@keyframes explode {
-  to {
-    transform: translate(var(--x), var(--y));
-    opacity: 0;
-  }
-}
