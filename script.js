@@ -1,7 +1,6 @@
 const textEl = document.getElementById("text");
 const buttons = document.getElementById("buttons");
 const music = document.getElementById("music");
-const card = document.getElementById("card");
 const balloonsBox = document.getElementById("balloons");
 
 let stage = 0;
@@ -59,41 +58,25 @@ const stages = [
   {
     html: `<img src="cake.png" class="cake">
            <p>Let’s cut the cake 🎂</p>`,
-    buttons: [{
-      label: "Cut 🎂",
-      action: () => nextStage()
-    }]
+    buttons: [{ label: "Cut 🎂", action: () => nextStage() }]
   },
   {
     html: `<div class="letter">
       <p><strong>Nandini,</strong></p>
-      <p>Loving you was never something I tried to understand or plan — it just happened.</p>
+      <p>Loving you was never something I planned — it just happened quietly and naturally.</p>
       <p>With you, love feels calm, safe, and honest.</p>
       <p>I don’t wish perfection, I just wish us — today and always.</p>
-      <p><strong>Happiest Birthday, my princess 💖</strong></p>
+      <p><strong>Happy Birthday, my princess 💖</strong></p>
     </div>`
   }
 ];
-
-/* ===== TEXT TYPING ===== */
-function typeText(text, cb) {
-  textEl.innerHTML = "";
-  let i = 0;
-  const t = setInterval(() => {
-    textEl.innerHTML = text.slice(0, i + 1);
-    i++;
-    if (i >= text.length) {
-      clearInterval(t);
-      if (cb) cb();
-    }
-  }, 30);
-}
 
 function renderStage() {
   buttons.innerHTML = "";
   const s = stages[stage];
   if (s.text) {
-    typeText(s.text, () => renderButtons(s.buttons));
+    textEl.innerHTML = s.text;
+    renderButtons(s.buttons);
   } else {
     textEl.innerHTML = s.html;
     renderButtons(s.buttons);
@@ -114,27 +97,20 @@ function nextStage() {
   renderStage();
 }
 
-card.addEventListener("click", () => {
-  if (stage < 2) nextStage();
-});
-
-/* ===== DECORATE EFFECT (FIXED & VISIBLE) ===== */
+/* Cute decorate effect */
 function decorateNow() {
   document.getElementById("decorations").classList.remove("hidden");
 
-  // BIG HEART EXPLOSION (center)
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 20; i++) {
     const h = document.createElement("span");
     h.innerHTML = "💗";
     h.style.position = "fixed";
     h.style.left = "50%";
     h.style.top = "50%";
-    h.style.fontSize = "26px";
-    h.style.transform = "translate(-50%, -50%)";
-    h.style.opacity = "1";
+    h.style.fontSize = "22px";
 
-    const x = Math.random() * 400 - 200;
-    const y = Math.random() * 400 - 200;
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 300 - 150;
 
     h.animate(
       [
@@ -149,9 +125,9 @@ function decorateNow() {
   }
 }
 
-/* ===== BALLOONS (RANDOM PATH) ===== */
+/* Balloons */
 function flyBalloons() {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 8; i++) {
     const b = document.createElement("div");
     b.className = "balloon";
     b.style.left = Math.random() * 100 + "vw";
@@ -163,16 +139,13 @@ function flyBalloons() {
   }
 }
 
-/* ===== BACKGROUND HEARTS ===== */
-function createHearts() {
-  setInterval(() => {
-    const h = document.createElement("span");
-    h.innerHTML = "♡";
-    h.style.left = Math.random() * 100 + "vw";
-    document.getElementById("hearts").appendChild(h);
-    setTimeout(() => h.remove(), 6000);
-  }, 400);
-}
+/* Background hearts */
+setInterval(() => {
+  const h = document.createElement("span");
+  h.innerHTML = "♡";
+  h.style.left = Math.random() * 100 + "vw";
+  document.getElementById("hearts").appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 500);
 
-createHearts();
 renderStage();
