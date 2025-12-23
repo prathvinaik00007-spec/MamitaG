@@ -185,3 +185,8 @@ button {
     opacity: 0;
   }
                               }
+/* ===== FIX: stop letter zoom loop completely ===== */
+#text:has(.letter) {
+  animation: none !important;
+  transform: none !important;
+     }
